@@ -1,6 +1,7 @@
 ﻿using CalculatorSample.Logic;
 using Moq;
 using NUnit.Framework;
+using System;
 using System.Diagnostics;
 
 namespace CalculatorSample.Tests
@@ -8,7 +9,6 @@ namespace CalculatorSample.Tests
     [TestFixture]
     public class CalculatorTest
     {
-
         private Mock<ILogger> MockInitilizer()
         {
             var mock = new Mock<ILogger>();
@@ -60,6 +60,12 @@ namespace CalculatorSample.Tests
         public void Test_Divide_Negative_Numbers()
         {
             Assert.AreEqual(expected: 4.5, new Calculator(MockInitilizer().Object).Divide(-9, -2));
+        }
+
+        [Test]
+        public void Test_Divide_Zero()
+        {
+           Assert.Throws<DivideByZeroException>(() => { new Calculator(MockInitilizer().Object).Divide(1, 0); });
         }
 
         [Test]

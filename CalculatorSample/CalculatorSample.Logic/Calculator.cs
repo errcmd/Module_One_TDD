@@ -33,10 +33,11 @@ namespace CalculatorSample.Logic
             return x * y;
         }
 
-        public double Divide(int x, int y)
+        public double Divide(int x, int y )
         {
-            _logger.Log($"Operation Degree: x ={x}, y={y}");
-            return (double)x / (double)y;
+            //_logger.Log($"Operation Degree: x ={x}, y={y}");
+
+            return (y == 0) ? throw new DivideByZeroException(): (double)x /(double)y;
         }
         public double Degree(int x, int y)
         {
